@@ -1,0 +1,23 @@
+{
+	"name":"tfis3-demo",
+	"version":"0.0.1",
+	"description":"this is test fis3 function",
+	"author":{
+		"name":"teen",
+		"email":"teen@163.com"
+	},
+	"dependencies":{
+		"fis3":"^",
+		"fis-parser-less":"^",
+		"fis3-hook-module":"^",
+		
+		},
+	"devDependencies":{
+		"fis3":"^",
+		"fis-parser-less":"^",
+		"fis3-hook-module":"^",
+		
+		},
+	"license": "BSD"
+
+}
