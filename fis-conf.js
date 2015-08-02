@@ -17,6 +17,7 @@ fis
 	.match('::package', {
 	  spriter: fis.plugin('csssprites'),
 	  postpackager: fis.plugin('loader', {
+	  	useInlineMap: true, // 资源映射表内嵌
 	    allInOne: false
 	  })
 	})
@@ -52,10 +53,10 @@ fis
 //支持amd 规范
 fis.hook('module', {
 		paths:{
-			jquery:'js/lib/jquery-1.8.2.min',
-			zepto:'js/lib/zepto-1.1.2.min'
+			jquery:'js/lib/jquery-1.8.2.min.js',
+			zepto:'js/lib/zepto-1.1.2.min.js'
 		},
-	  mode: 'amd', // 模块化支持 amd 规范，适应 require.js
+	  mode: 'auto', // 模块化支持 amd 规范，适应 require.js
 	  //shim:{},
 	  forwardDeclaration: true
 	});
