@@ -1,8 +1,41 @@
+'use strict';
 
+var path = require('path'),
+	meta = require('./package.json');
+
+
+
+fis
+    // 排除指定目录
+    .set('project.files', ['**', '.**', '.**/**'])
+    .set('project.ignore', ['node_modules/**', '.gitignore', '.*/**','fis-conf.js'])
+    // 把scss映射为css
+    .set('project.ext', {
+        scss : 'css',
+        less : 'css'
+    })
+    .set('name', meta.name)
+    .set('version', meta.version)
+    .set('urlPrefix', config.urlPrefix)
+    .set('dest', /^\./i.test(config.dest) ? path.resolve(__dirname, config.dest) : config.dest)
+    .set('framework', {
+        cache: config.LSCache, //开启localstorage缓存
+        combo: config.combo, // 开启合并
+        comboPattern: config.comboPattern,
+        urlPattern: config.urlPattern, // 静态资源加载路径模式
+        urlPrefix: config.urlPrefix // 静态资源加载路径模式
+    });
+
+// 测试环境屏蔽Hash
+if (config.env === 'development') {
+    fis.set('framework.useHash', false);
+} else {
+    fis.set('framework.useHash', true);
+}
 
 
 /**
- * 开发测试
+ ******************** 开发测试 *******************
  */
 fis
 	.match('**', {
@@ -32,12 +65,12 @@ fis
     release : '/static/js$0'
 	})
 	//
-	.match('component/**/*.js', {
-		isMod: true
-	})
-	.match('js/base/**.js', {
-		isMod: true
-	})
+	// .match('component/**/*.js', {
+	// 	isMod: true
+	// })
+	// .match('js/base/**.js', {
+	// 	isMod: true
+	// })
 	// 所有的 css
 	.match('*.{css,less}', {
 		// 给匹配到的文件分配属性 `useSprite`
@@ -53,15 +86,15 @@ fis
 //支持amd 规范
 fis.hook('module', {
 		paths:{
-			jquery:'js/lib/jquery-1.8.2.min.js',
-			zepto:'js/lib/zepto-1.1.2.min.js'
+			jquery:'js/lib/jquery-1.8.2.min',
+			zepto:'js/lib/zepto-1.1.2.min'
 		},
 	  mode: 'auto', // 模块化支持 amd 规范，适应 require.js
 	  //shim:{},
 	  forwardDeclaration: true
 	});
 /**
- * 发布打包
+ ********************* 发布打包  *****************
  */
 
 fis.media('prod')
@@ -88,10 +121,17 @@ fis.media('prod')
 	});
 
 //分配域名
-// fis.media('prod').match('*.js', {
+// fis.media('prod')
+// .match('*.js', {
 //     domain: 'http://js.qiku.com/'
-// });
-// fis.match('*', {
+// })
+// .match('*.css',{
+// 		domain:'http://css.qiku.com/'
+// })
+// .match('*.{png,jpg,gif,jpeg}',{
+// 		domain:'http://res.qiku.com'
+// })
+// .match('*', {
 //   deploy: fis.plugin('local-deliver', {
 //     to: ''
 //   })

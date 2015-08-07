@@ -1,7 +1,6 @@
 // @require /js/lib/require.js
 
-
-var $ = require('jquery');
-
+require(['jquery'],function(){
 	console.log('contain change');
 	$('#contain p').css('text-algin','center');
+});
