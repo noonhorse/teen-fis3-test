@@ -8,7 +8,7 @@ var path = require('path'),
 fis
     // 排除指定目录
     .set('project.files', ['**', '.**', '.**/**'])
-    .set('project.ignore', ['node_modules/**', '.gitignore', '.*/**','fis-conf.js'])
+    .set('project.ignore', ['node_modules/**', '.gitignore', '.*/**','admin/**','config/**','controller/**','fis-conf.js'])
     // 把scss映射为css
     .set('project.ext', {
         scss : 'css',

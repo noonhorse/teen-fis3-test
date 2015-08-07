@@ -43,6 +43,4 @@ Temporary Items
 .apdisk
 
 # Users Environment Variables
-output/
 node_modules/
-debug/
