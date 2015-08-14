@@ -18,4 +18,15 @@ var page = fs.readFileSync(path.join(__dirname, '../admin/views/index.html'), 'u
 
 module.exports = function* home(next) {
   this.body = page;
+  //qianzhi;
+  //db model>
+  //return 
+  //$this->view('index.php',$data);
+  //
+  //
+  //
+  //setTimeout(function(){   },2000);
+  //
+  //
+  //setTimeout(function(){   },2000);
 };

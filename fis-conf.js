@@ -1,38 +1,34 @@
 'use strict';
 
-var path = require('path'),
-	meta = require('./package.json');
+// var path = require('path'),
+// 	meta = require('./package.json');
 
-
-
-fis
+fis.set('project.ignore', ['node_modules/**',"admin/**","config/**","controller/**",'.gitignore','fis-conf.js']);// 
     // 排除指定目录
-    .set('project.files', ['**', '.**', '.**/**'])
-    .set('project.ignore', ['node_modules/**', '.gitignore', '.*/**','admin/**','config/**','controller/**','fis-conf.js'])
-    // 把scss映射为css
-    .set('project.ext', {
-        scss : 'css',
-        less : 'css'
-    })
-    .set('name', meta.name)
-    .set('version', meta.version)
-    .set('urlPrefix', config.urlPrefix)
-    .set('dest', /^\./i.test(config.dest) ? path.resolve(__dirname, config.dest) : config.dest)
-    .set('framework', {
-        cache: config.LSCache, //开启localstorage缓存
-        combo: config.combo, // 开启合并
-        comboPattern: config.comboPattern,
-        urlPattern: config.urlPattern, // 静态资源加载路径模式
-        urlPrefix: config.urlPrefix // 静态资源加载路径模式
-    });
-
+    //.set('project.files', ['**', '.**', '.**/**'])
+     // 
+//     // 把scss映射为css
+//     .set('project.ext', {
+//         scss : 'css',
+//         less : 'css'
+//     })
+//     .set('name', meta.name)
+//     .set('version', meta.version);
+    // .set('urlPrefix', config.urlPrefix)
+    // .set('dest', /^\./i.test(config.dest) ? path.resolve(__dirname, config.dest) : config.dest)
+    // .set('framework', {
+    //     cache: config.LSCache, //开启localstorage缓存
+    //     combo: config.combo, // 开启合并
+    //     comboPattern: config.comboPattern,
+    //     urlPattern: config.urlPattern, // 静态资源加载路径模式
+    //     urlPrefix: config.urlPrefix // 静态资源加载路径模式
+    // });
 // 测试环境屏蔽Hash
-if (config.env === 'development') {
-    fis.set('framework.useHash', false);
-} else {
-    fis.set('framework.useHash', true);
-}
-
+// if (config.env === 'development') {
+//     fis.set('framework.useHash', false);
+// } else {
+//     fis.set('framework.useHash', true);
+// }
 
 /**
  ******************** 开发测试 *******************
@@ -42,7 +38,7 @@ fis
 		useHash:false
 	})
 	//less编译
-	.match('*.less', {
+	.match('{component,css}/**/*.less', {
 	  parser: fis.plugin('less'),// fis-parser-less 插件进行解析
 	  rExt: '.css'// .less 文件后缀构建后被改成 .css 文件
 	})
@@ -59,10 +55,13 @@ fis
     useMap: true
 	})
 	// 所有的 js
-	.match('*.js', {
+	.match('{component,css}/**/*.js', {
 		isMod: false,
     //发布到/static/js/xxx目录下
     release : '/static/js$0'
+	})
+	.match('js/base/common.js', {
+		isMod:true
 	})
 	//
 	// .match('component/**/*.js', {
@@ -72,7 +71,7 @@ fis
 	// 	isMod: true
 	// })
 	// 所有的 css
-	.match('*.{css,less}', {
+	.match('{component,css}/**/*.{css,less}', {
 		// 给匹配到的文件分配属性 `useSprite`
   	useSprite: true,
     //发布到/static/css/xxx目录下

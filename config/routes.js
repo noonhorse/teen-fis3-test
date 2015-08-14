@@ -10,7 +10,25 @@ var admin = require('../controller/admin'),
 
 module.exports = function routes(app){
 	app.get('/login', login);
-
 	app.post('/login', login.loginin)
+
+
+
+
+
+
+
+	//api
+	
+
+
+
+
+
+
+	//web socket 
+	
+	
+
 
 }

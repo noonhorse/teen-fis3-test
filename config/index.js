@@ -10,5 +10,4 @@ var config ={
   	root: path.resolve(__dirname,'..')
 };
 
-
 module.exports = config;
