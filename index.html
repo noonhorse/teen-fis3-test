@@ -14,10 +14,36 @@
 	<link rel="import" href="/template/index.tpl?__inline">
 	<div class="content">
 		<link rel="import" href="/component/nav/nav.html?__inline">
+
+		<p>
+			<br>
+			<a href="javascript:;" id="loadRap"> 加载rap 数据</a>
+			<br>
+		</p>
+		<p id="rap"></p>
 	</div>
 	<link rel="import" href="/component/footer/footer.html?__inline">
 	<!--SCRIPT_PLACEHOLDER-->
 	<!--RESOURCEMAP_PLACEHOLDER-->
+	<!--  -->
+	<script type="text/javascript" src="http://10.1.23.12/rap.plugin.js?projectId=1"></script>
 	<script src="/js/lib/require.js"></script>
+	<script>
+	$(function(){
+		$('#loadRap').on('click',function(){
+
+			$.ajax({
+				url: getPath('www')+'UserCenter/getUserInfo?callback=?',//线上怎么写，这里就怎么写
+				type: 'GET',
+				data: {uid: 545646456},
+				dataType: 'jsonp'
+			}).done(function(data) {
+				console.log(data);
+				//$('#rap').html(data);
+			})
+		});
+		
+	});
+	</script>
 </body>
 </html>
